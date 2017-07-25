@@ -9,12 +9,14 @@ class CollectedObject {
     z:number
   }
   mesh:BABYLON.Mesh
-  COLLECTION_KEY = 'collections';
+  private COLLECTION_KEY = 'collections';
 
   constructor(public fileType:string, public src:string){
     this.uniqueID = this.guid()
 
-    localStorage.getItem(this.COLLECTION_KEY);
+    var rawCollections = localStorage.getItem(this.COLLECTION_KEY) ? localStorage.getItem(COLLECTION_KEY) : '[]';
+    var oldCollections = JSON.parse(rawCollections);
+
   }
 
   // Generate unique ID. 
